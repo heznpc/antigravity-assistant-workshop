@@ -34,7 +34,7 @@
 - **영상 수정 · 라일리 브라운** — 휴대폰의 Claude Duet으로 첫 장면과 재생 속도를 바꿔 달라고 요청했습니다. 맥에서 실행 중인 Claude Code가 수정본을 만들었습니다. [직접 시연](https://www.youtube.com/watch?v=zU0jqYKTgMs&t=227s)
 - **글감 정리 · 블라드 시필로프** — OpenClaw가 전달받은 기사와 링크를 모아 글감 목록에 추가했습니다. 최종 원고는 본인이 썼습니다. [본인의 사용 기록](https://founderbrain.substack.com/p/how-i-use-openclaw-after-one-month)
 
-이번 실습에서는 학교 계정으로 [Antigravity 앱](https://antigravity.google/docs/getting-started)을 열어 작업 폴더에서 비서의 역할과 도구를 정하고, 같은 역할 지시를 Python에서 읽어 [SDK](https://antigravity.google/docs/sdk/overview)로 호출합니다.
+Antigravity를 고른 첫 번째 이유는 학교 계정으로 학생 신분을 확인해 무료로 시작할 수 있기 때문입니다. [Antigravity 앱](https://antigravity.google/docs/getting-started)에서 작업 폴더를 열어 비서의 역할과 도구를 정하고 요청을 시험합니다. [SDK 예제](examples/sdk_assistant.py)는 같은 역할 지시를 읽어 로컬 터미널에서 비서를 실행합니다. 이 호출을 자신의 웹앱이나 업무 스크립트에도 연결할 수 있습니다.
 
 ## 따라 하기
 
