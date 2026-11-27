@@ -34,7 +34,7 @@
 - **영상 수정 · 라일리 브라운** — 휴대폰의 Claude Duet으로 첫 장면과 재생 속도를 바꿔 달라고 요청했습니다. 맥에서 실행 중인 Claude Code가 수정본을 만들었습니다. [직접 시연](https://www.youtube.com/watch?v=zU0jqYKTgMs&t=227s)
 - **글감 정리 · 블라드 시필로프** — OpenClaw가 전달받은 기사와 링크를 모아 글감 목록에 추가했습니다. 최종 원고는 본인이 썼습니다. [본인의 사용 기록](https://founderbrain.substack.com/p/how-i-use-openclaw-after-one-month)
 
-Antigravity를 고른 첫 번째 이유는 학교 계정으로 학생 신분을 확인해 무료로 시작할 수 있기 때문입니다. [Antigravity 앱](https://antigravity.google/docs/getting-started)에서 작업 폴더를 열어 비서의 역할과 도구를 정하고 요청을 시험합니다. [SDK 예제](examples/sdk_assistant.py)는 같은 역할 지시를 읽어 로컬 터미널에서 비서를 실행합니다. 이 호출을 자신의 웹앱이나 업무 스크립트에도 연결할 수 있습니다.
+Antigravity를 고른 첫 번째 이유는 학교 계정으로 학생 신분을 확인해 무료로 시작할 수 있기 때문입니다. [Antigravity 앱](https://antigravity.google/docs/getting-started)에서 작업 폴더를 열어 비서의 역할과 도구를 정합니다. 같은 역할 지시를 [SDK 터미널 예제](examples/sdk_assistant.py)와 [로컬 웹 예제](examples/web_assistant.py)에서 읽어 비서를 호출합니다.
 
 ## 따라 하기
 
@@ -54,6 +54,18 @@ python examples/sdk_assistant.py "README를 읽고 실습 준비물 세 가지�
 Windows PowerShell에서는 `python -m venv .venv` 다음에 `.\.venv\Scripts\Activate.ps1`로 가상환경을 활성화하고, `$env:GEMINI_API_KEY = '발급받은-키'`로 설정합니다. 키는 로컬 환경 변수에만 둡니다.
 
 같은 실행에서 이어서 요청하려면 명령 끝에 새 요청을 따옴표로 하나 더 붙입니다. 예를 들어 첫 요청으로 준비물을 뽑고, 두 번째 요청으로 실습이 끝난 뒤 확인할 체크리스트를 받을 수 있습니다.
+
+## 브라우저에서 실습 준비 비서 쓰기
+
+위의 Python 환경과 Gemini API 키 설정을 마친 터미널에서 웹 예제를 실행합니다.
+
+```sh
+python examples/web_assistant.py
+```
+
+같은 컴퓨터의 브라우저에서 [실습 준비 비서](http://127.0.0.1:8000)를 열고 **비서에게 요청**을 누릅니다. 기본 요청은 “README를 읽고 실습 준비물 3가지를 체크리스트로 만들어 줘.”입니다. Python이 현재 README와 요청을 SDK에 전달하고, 답을 브라우저에 표시합니다.
+
+슬라이드의 결과 화면에는 예시 응답을 사용했습니다. 실제 답변의 문구는 호출할 때마다 달라질 수 있습니다. [Lucide 아이콘](https://lucide.dev/) · [아이콘 라이선스](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
 
 ## 슬라이드 화면 출처
 

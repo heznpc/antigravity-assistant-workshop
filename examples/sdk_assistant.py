@@ -4,8 +4,6 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from google.antigravity import Agent, LocalAgentConfig
-
 ROLE_FILE = (
     Path(__file__).resolve().parents[1]
     / ".agents"
@@ -14,11 +12,16 @@ ROLE_FILE = (
 )
 
 
-async def run(prompts: list[str]) -> None:
+def create_assistant():
+    from google.antigravity import Agent, LocalAgentConfig
+
     role_file = ROLE_FILE.read_text(encoding="utf-8")
     instructions = role_file.split("---", maxsplit=2)[2].strip()
-    config = LocalAgentConfig(system_instructions=instructions)
-    async with Agent(config) as assistant:
+    return Agent(LocalAgentConfig(system_instructions=instructions))
+
+
+async def run(prompts: list[str]) -> None:
+    async with create_assistant() as assistant:
         for prompt in prompts:
             response = await assistant.chat(prompt)
             print(await response.text())
