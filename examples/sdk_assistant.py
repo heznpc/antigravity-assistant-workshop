@@ -12,11 +12,11 @@ ROLE_FILE = (
 )
 
 
-def create_assistant(response_schema=None):
+def create_assistant(*, response_schema=None, role_file=ROLE_FILE):
     from google.antigravity import Agent, CapabilitiesConfig, LocalAgentConfig
 
-    role_file = ROLE_FILE.read_text(encoding="utf-8")
-    instructions = role_file.split("---", maxsplit=2)[2].strip()
+    markdown = role_file.read_text(encoding="utf-8")
+    instructions = markdown.split("---", maxsplit=2)[2].strip()
     return Agent(LocalAgentConfig(
         system_instructions=instructions,
         response_schema=response_schema,

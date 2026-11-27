@@ -1,94 +1,107 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>나만의 캘린더</title>
-  <style>
-    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #192645; background: #eef1fa; }
-    *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; }
-    main { max-width: 1140px; margin: 0 auto; padding: 28px 24px; }
-    header, header div, .week, nav, button, .success { display: flex; align-items: center; }
-    header, .week { justify-content: space-between; gap: 12px; }
-    header div { gap: 12px; }
-    .brand { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; color: white; background: #234c9b; }
-    svg { width: 20px; height: 20px; flex: none; }
-    h1, h2, h3, p { margin: 0; }
-    h1 { font-size: 28px; font-weight: 650; letter-spacing: -.045em; }
-    h2 { font-size: 19px; letter-spacing: -.03em; }
-    .mode { font-size: 14px; color: #4e6084; }
-    .panel { background: #fff; border: 1px solid #dbe2f1; border-radius: 16px; margin-top: 16px; }
-    form.panel { padding: 17px 20px; }
-    label { display: block; font-weight: 650; margin-bottom: 8px; }
-    .input-row { display: flex; gap: 10px; }
-    input { min-width: 0; width: 100%; border: 1px solid #a9b8d2; border-radius: 7px; padding: 10px 12px; color: inherit; font: inherit; }
-    button { gap: 7px; justify-content: center; flex: none; border: 0; border-radius: 7px; color: #fff; background: #234c9b; padding: 10px 14px; font: 650 15px system-ui; cursor: pointer; }
-    button:hover { background: #183776; }
-    .success, .error { border-radius: 8px; padding: 9px 11px; margin-top: 10px; font-size: 14px; font-weight: 600; }
-    .success { gap: 8px; background: #e8f4ec; color: #194d38; }
-    .error { color: #721c24; background: #fff1f0; }
-    [hidden] { display: none; }
-    .week { padding: 15px 20px; }
-    nav { gap: 7px; }
-    nav a { display: grid; place-items: center; min-width: 36px; height: 36px; padding: 0 8px; border: 1px solid #dbe2f1; border-radius: 6px; color: #274787; text-decoration: none; font-size: 14px; }
-    nav a:hover { background: #eef2fd; }
-    nav svg { width: 16px; height: 16px; }
-    :focus-visible { outline: 3px solid #587cc9; outline-offset: 3px; }
-    .calendar-scroll { overflow-x: auto; }
-    .calendar { min-width: 690px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
-    .calendar section { min-height: 184px; border-top: 1px solid #e1e6f1; }
-    .calendar section + section { border-left: 1px solid #e1e6f1; }
-    .calendar section:nth-last-child(-n+2) { background: #f9faff; }
-    .calendar h3 { display: flex; align-items: center; justify-content: space-between; gap: 5px; padding: 10px 10px 7px; font-size: 14px; font-weight: 550; color: #4e6084; }
-    .calendar h3 time { border-radius: 7px; padding: 3px 6px; color: #263d70; font-size: 18px; }
-    .calendar .today h3 time { color: #fff; background: #234c9b; }
-    .calendar ul { list-style: none; margin: 0; padding: 1px 7px 9px; }
-    .event { display: grid; gap: 5px; margin: 0 0 6px; padding: 9px 8px; background: #e8eefb; color: #203d77; border-radius: 7px; border-left: 3px solid #7a97d6; overflow-wrap: anywhere; }
-    .event time { font-size: 13px; font-variant-numeric: tabular-nums; }
-    .event strong { font-size: 15px; }
-    .event.new { background: #dce8ff; border-color: #234c9b; }
-    @media (max-width: 560px) {
-      main { padding: 16px 12px; }
-      h1 { font-size: 23px; }
-      .input-row { flex-wrap: wrap; }
-      .week { padding: 12px; }
-      h2 { font-size: 16px; }
-    }
-  </style>
+<!-- Lucide icons (https://lucide.dev/)
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>실습 준비 비서</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { color-scheme: light; font-family: system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color: #18284b; background: #edf2fa; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: clamp(12px, 3vw, 32px); }
+  main { max-width: 960px; margin: auto; overflow: hidden; background: #fff; border: 1px solid #c1cde2; border-radius: 20px; box-shadow: 0 10px 28px #172d4d12; }
+  header { background: #e1e9f8; padding: 11px 25px; display: flex; gap: 12px; align-items: center; font-size: clamp(17px, 2.1vw, 23px); }
+  header code { background: #f7faff; border-radius: 8px; padding: 4px 12px; overflow-wrap: anywhere; }
+  svg { flex: none; width: 1.15em; height: 1.15em; }
+  .content { padding: clamp(20px, 4vw, 37px) clamp(20px, 5vw, 48px); }
+  h1 { font-size: clamp(36px, 5.2vw, 54px); letter-spacing: -.045em; margin: 0 0 16px; line-height: 1.1; }
+  label, h2 { display: flex; align-items: center; gap: 9px; font-size: clamp(20px, 2.6vw, 27px); font-weight: 750; margin: 0 0 8px; }
+  textarea { display: block; width: 100%; resize: vertical; min-height: 64px; border: 1px solid #7990b7; border-radius: 9px; padding: 12px 15px; font: inherit; font-size: clamp(17px, 2.5vw, 25px); color: #17294f; }
+  button { display: inline-flex; align-items: center; gap: 9px; margin-top: 10px; padding: 9px 17px; border: 0; border-radius: 9px; color: white; background: #244889; font: inherit; font-size: clamp(18px, 2.4vw, 23px); font-weight: 700; cursor: pointer; }
+  button:hover { background: #173468; }
+  :focus-visible { outline: 3px solid #5276b8; outline-offset: 3px; }
+  section { margin-top: 23px; padding: 16px 20px; border: 1px solid #bac9e4; border-left: 5px solid #4165a8; background: #f4f7fe; border-radius: 10px; }
+  pre { margin: 0; color: #263d67; font: inherit; font-size: clamp(17px, 2.4vw, 24px); line-height: 1.56; white-space: pre-wrap; overflow-wrap: anywhere; }
+  [role=alert] { color: #9c1d29; font-weight: 700; }
+</style>
 </head>
 <body>
-<main>
-  <!-- Icons from Lucide, https://lucide.dev/ (ISC license). -->
-  <header>
-    <div>
-      <span class="brand"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4m8-4v4M3 10h18m-13 5h.01m3.99 0h.01m3.99 0h.01m-8.01 3h.01m3.99 0h.01m3.99 0h.01"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg></span>
-      <h1>나만의 캘린더</h1>
-    </div>
-    <p class="mode">${mode} · 한국 시간</p>
-  </header>
-
-  <form class="panel" method="post" action="/?week=${week}">
-    <label for="prompt">캘린더 비서에게 맡길 일정</label>
-    <div class="input-row">
-      <input id="prompt" name="prompt" maxlength="500" value="${prompt}" required>
-      <button type="submit"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0 .024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>비서에게 요청</button>
-    </div>
-    <p class="error" role="alert" ${error_hidden}>${error}</p>
-    <p class="success" role="status" ${success_hidden}><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>${success}</p>
-  </form>
-
-  <section class="panel" aria-labelledby="week-title">
-    <div class="week">
-      <h2 id="week-title">${week_label}</h2>
-      <nav aria-label="주간 캘린더 탐색">
-        <a href="/?week=${previous}" aria-label="이전 주"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a>
-        <a href="/">이번 주</a>
-        <a href="/?week=${following}" aria-label="다음 주"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
-      </nav>
-    </div>
-    <div class="calendar-scroll"><div class="calendar">${columns}</div></div>
-  </section>
+<main aria-labelledby="title">
+  <header><svg aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <rect width="18" height="18" x="3" y="3" rx="2" />
+  <path d="M3 9h18" />
+  <path d="M9 21V9" />
+</svg><code>http://127.0.0.1:8000</code><span>${mode}</span></header>
+  <div class="content">
+    <h1 id="title">실습 준비 비서</h1>
+    <form method="post" action="/">
+      <label for="prompt">비서에게 맡길 일</label>
+      <textarea id="prompt" name="prompt" rows="1" maxlength="500" required>${prompt}</textarea>
+      <button type="submit"><svg aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+  <path d="m21.854 2.147-10.94 10.939" />
+</svg>비서에게 요청</button>
+    </form>
+    <p ${examples_hidden}>두 번째 예시 “README를 읽고 발표 뒤에 다시 실행하는 방법을 정리해 줘.”</p>
+    <p role="alert" ${error_hidden}>${error}</p>
+    <section aria-labelledby="result" ${result_hidden}>
+      <h2 id="result"><svg aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13 5h8" />
+  <path d="M13 12h8" />
+  <path d="M13 19h8" />
+  <path d="m3 17 2 2 4-4" />
+  <path d="m3 7 2 2 4-4" />
+</svg>비서의 답변</h2>
+      <pre>${result}</pre>
+    </section>
+  </div>
 </main>
 </body>
 </html>

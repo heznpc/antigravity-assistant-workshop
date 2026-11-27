@@ -1,4 +1,4 @@
-# Antigravity로 내 일정을 챙기는 AI 비서 만들기
+# Antigravity로 나만의 AI 비서 만들기
 
 고려사이버대학교 소프트웨어학부 세미나 실습 자료
 
@@ -7,11 +7,11 @@
 ## 자료 받기
 
 - [발표 슬라이드 PDF](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) · [전체 자료 ZIP](https://github.com/heznpc/antigravity-assistant-workshop/archive/refs/heads/main.zip)
-- [앱에서 여는 비서 설정](.agents/agents/workshop-assistant.md) · [SDK 일정 해석](examples/calendar_assistant.py) · [캘린더 웹앱](examples/web_assistant.py)
+- [앱에서 여는 비서 설정](.agents/agents/workshop-assistant.md) · [SDK 연결](examples/sdk_assistant.py) · [브라우저 예제](examples/web_assistant.py)
 
 ## 실습에서 만드는 비서
 
-브라우저에서 “다음 주 수요일 저녁 7시에 스터디 한 시간 넣어 줘”라고 요청하면 일정이 주간 캘린더에 저장됩니다. Antigravity 앱에서는 커스텀 에이전트의 역할을 확인합니다. 브라우저에서 보낸 요청은 Python 웹앱이 같은 역할 지시와 함께 SDK에 전달합니다. SDK가 해석한 제목, 시작 시각, 소요 시간을 웹앱에서 확인하고 저장합니다. [커스텀 에이전트](https://antigravity.google/blog/introducing-custom-agents) · [SDK 구조화 응답](https://antigravity.google/docs/sdk/structured-output/)
+Antigravity 앱에서 준비된 비서에게 실습 자료 요약이나 체크리스트 작성을 맡겨 봅니다. 로컬 브라우저 예제는 같은 역할 파일의 본문을 읽어 Antigravity SDK에 전달합니다. Python이 브라우저 입력과 README를 SDK에 보내고, 돌려받은 답을 화면에 표시합니다. [커스텀 에이전트](https://antigravity.google/blog/introducing-custom-agents)
 
 ### 유사 서비스 소개
 
@@ -44,21 +44,21 @@ git clone https://github.com/heznpc/antigravity-assistant-workshop.git
 cd antigravity-assistant-workshop
 ```
 
-Antigravity 앱에서 클론한 폴더를 작업공간으로 열고 에이전트 목록에서 `workshop-assistant`를 선택합니다. [역할 파일](.agents/agents/workshop-assistant.md)에서 앱과 SDK가 읽는 역할 지시를 확인합니다.
+Antigravity 앱에서 클론한 폴더를 작업공간으로 열고 에이전트 목록에서 `workshop-assistant`를 선택합니다. “README를 읽고 실습 준비물 3가지를 체크리스트로 만들어 줘”라고 요청해 봅니다. 발표에서는 클론한 [설정 파일](.agents/agents/workshop-assistant.md)을 열어 역할과 도구가 지정된 부분을 살펴봅니다.
 
-### 2. 브라우저에서 일정 맡기기
+### 2. 브라우저에서 실행하기
 
-예시 모드는 Python만 있으면 됩니다. 터미널에서 실행한 뒤 [내 캘린더](http://127.0.0.1:8000)를 열고 **비서에게 요청**을 누릅니다.
+Python 3.11 이상에서 저장소의 루트 폴더를 열고 실행합니다. Windows에서는 `python3` 대신 `py`를 사용합니다.
 
 ```sh
 python3 examples/web_assistant.py --demo
 ```
 
-Windows에서는 `py examples/web_assistant.py --demo`를 실행합니다. 기본 요청을 보내면 다음 주 수요일 19:00–20:00에 스터디가 추가됩니다. 두 번째로 “다음 주 금요일 오후 3시에 과제 회의 30분 넣어 줘.”를 보내고 같은 캘린더에 저장되는지 확인합니다. 예시 모드에서는 날짜, 시작 시간, 제목, 소요 시간을 예시 순서대로 입력합니다.
+[실습 준비 비서](http://127.0.0.1:8000)를 열고 **비서에게 요청**을 누릅니다. 예시 모드는 API 키 없이 화면에 안내된 두 요청의 준비된 답을 볼 수 있습니다.
 
-### 3. SDK로 일정 해석하기
+### 3. SDK로 직접 요청 보내기
 
-터미널에서 `Ctrl+C`를 눌러 예시 모드를 종료합니다. SDK를 설치하고 발급받은 Gemini API 키를 환경 변수에 설정한 뒤 다시 실행합니다. SDK 키 발급과 호출 한도는 앱의 학생 혜택과 별도로 확인합니다. [Gemini API 키 안내](https://ai.google.dev/gemini-api/docs/api-key) · [호출 한도](https://ai.google.dev/gemini-api/docs/rate-limits)
+예시 모드를 실행 중이라면 `Ctrl+C`로 종료합니다. SDK를 설치하고 Gemini API 키를 환경 변수에 설정한 뒤 `--demo` 없이 다시 실행하면 브라우저에서 입력한 요청을 SDK로 보냅니다. SDK 키 발급과 호출 한도는 앱의 학생 혜택과 별도로 확인합니다. [Gemini API 키 안내](https://ai.google.dev/gemini-api/docs/api-key) · [호출 한도](https://ai.google.dev/gemini-api/docs/rate-limits)
 
 ```sh
 python3 -m venv .venv
@@ -71,11 +71,19 @@ Windows PowerShell에서는 `py -m venv .venv`로 가상환경을 만든 뒤 `.\
 
 ### 발표에서 볼 코드
 
-1. [역할 파일](.agents/agents/workshop-assistant.md)에 어떤 정보를 일정으로 해석할지 적습니다.
-2. [일정 해석 코드](examples/calendar_assistant.py)에서 SDK가 구조화한 제목, 날짜, 시각, 소요 시간을 검증합니다.
-3. [웹앱](examples/web_assistant.py)이 일정을 로컬 SQLite에 저장하고 해당 주를 화면에 엽니다.
+1. [역할 파일](.agents/agents/workshop-assistant.md)의 Markdown 본문이 비서의 역할을 정합니다. YAML의 `tools`는 Antigravity 앱에서 쓰는 도구 설정입니다.
+2. [SDK 연결](examples/sdk_assistant.py)이 그 본문을 읽고 `LocalAgentConfig`의 `system_instructions`로 전달합니다.
+3. [웹앱](examples/web_assistant.py)이 브라우저 입력에 README를 붙여 `assistant.chat(request)`를 호출하고 화면에 답을 표시합니다. 브라우저 요청은 각각 새 세션에서 실행됩니다.
 
-예시 모드와 SDK 모드의 일정은 각각 `.workshop/demo.sqlite3`, `.workshop/calendar.sqlite3`에 저장됩니다. 캘린더 시간대는 한국 표준시이며 슬라이드 캡처는 예시 모드입니다. [Lucide 아이콘과 라이선스](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
+## 선택 예제 — 캘린더에 일정 저장
+
+```sh
+python3 -m examples.calendar.web_assistant --demo
+```
+
+[캘린더](http://127.0.0.1:8001)를 열고 기본 요청 “다음 주 수요일 저녁 7시에 스터디 한 시간 넣어 줘”를 보냅니다. 요청에서 얻은 제목, 날짜, 시각, 소요 시간을 로컬 SQLite에 저장하고 주간 화면에 표시합니다. 예시 모드에서는 기본 문장과 같은 순서로 요청을 작성합니다.
+
+SDK로 일정을 해석하려면 위에서 설정한 가상환경과 API 키로 `.venv/bin/python -m examples.calendar.web_assistant`를 실행합니다. Windows PowerShell에서는 `.\.venv\Scripts\python.exe -m examples.calendar.web_assistant`를 실행합니다. 예시 모드와 SDK 모드의 일정은 각각 `.workshop/demo.sqlite3`, `.workshop/calendar.sqlite3`에 저장됩니다. [일정 해석 코드](examples/calendar/calendar_assistant.py) · [아이콘 라이선스](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
 
 ## 슬라이드 화면 출처
 

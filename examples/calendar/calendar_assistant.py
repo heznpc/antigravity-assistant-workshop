@@ -4,10 +4,12 @@ import asyncio
 import re
 from dataclasses import dataclass
 from datetime import date, timedelta
+from pathlib import Path
 
-from sdk_assistant import create_assistant
+from ..sdk_assistant import create_assistant
 
 DEFAULT_PROMPT = "다음 주 수요일 저녁 7시에 스터디 한 시간 넣어 줘."
+ROLE_FILE = Path(__file__).with_name("role.md")
 WEEKDAYS = "월화수목금토일"
 EVENT_SCHEMA = {
     "type": "object",
@@ -107,7 +109,7 @@ async def interpret(prompt: str, today: date) -> Event:
         f"사용자 요청\n{prompt}"
     )
     async with asyncio.timeout(35):
-        async with create_assistant(EVENT_SCHEMA) as assistant:
+        async with create_assistant(response_schema=EVENT_SCHEMA, role_file=ROLE_FILE) as assistant:
             response = await assistant.chat(request)
             payload = await response.structured_output()
     return validate_event(payload)
