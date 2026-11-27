@@ -27,12 +27,14 @@
 | [Grok Bot](https://x.ai/bot) | 예약 가능한 시간 후보를 받아보고, 반복 업무를 정해 둔 일정에 실행하는 루틴을 봅니다. [Grok Bot 앱스토어 화면](https://apps.apple.com/app/id6794501026) | 봇 전용 클라우드 컴퓨터에서 연결한 앱을 사용합니다. [공식 소개](https://x.ai/news/introducing-grok-bot) |
 | [Claude Duet](https://claude.com/product/claude-duet) | 먼저 보내는 알림, 주문 승인, 진행 중이거나 대기 중인 작업 목록을 봅니다. [Claude Duet 앱스토어 화면](https://apps.apple.com/us/app/claude-duet-by-anthropic/id6803276000) | 연결한 앱을 사용해 백그라운드에서도 작업합니다. [공식 소개](https://claude.com/resources/articles/claude-duet) |
 
-**공개된 실제 사용 사례**
+**사용자가 공개한 일상·업무 사례**
 
-- Grok Bot을 만든 회사의 영업팀은 통화 기록을 CRM 메모에 반영하고 후속 연락 초안을 만드는 일을 맡겼습니다. 운영팀은 신규 입사자 자리 배정과 이메일로 받은 청구서 처리에 활용했습니다. [회사 내부 활용 사례](https://x.ai/news/introducing-grok-bot)
-- Anthropic의 보리스 체르니는 산책 중 Claude Duet에 머릿속 할 일을 말로 정리했습니다. 첼시 라르손은 자리를 비우기 전 할 일 목록을 맡기고 저녁에 결과 보고를 받았습니다. [Anthropic 구성원 활용 사례](https://claude.com/resources/articles/claude-duet)
+- **아이 일정 · 에밀리의 가족** — 가족이 설정한 OpenClaw가 보육시설 공지에서 행사와 휴원일을 읽어 에밀리의 캘린더에 추가하고 짧은 요약을 보냈습니다. [가족의 사용 기록](https://www.littlemight.com/partner-ai-assistant/#daycare-emails-to-calendar)
+- **선물 관리 · 신시아 벨 맥길리스** — Grok Bot에 연말 선물의 배송, 받을 사람, 누적 지출을 기록하도록 맡겼습니다. [사용자 인터뷰](https://www.theatlantic.com/technology/2026/11/ai-agents-holiday-shopping-muse/689587/)
+- **영상 수정 · 라일리 브라운** — 휴대폰의 Claude Duet으로 첫 장면과 재생 속도를 바꿔 달라고 요청했습니다. 맥에서 실행 중인 Claude Code가 수정본을 만들었습니다. [직접 시연](https://www.youtube.com/watch?v=zU0jqYKTgMs&t=227s)
+- **글감 정리 · 블라드 시필로프** — OpenClaw가 전달받은 기사와 링크를 모아 글감 목록에 추가했습니다. 최종 원고는 본인이 썼습니다. [본인의 사용 기록](https://founderbrain.substack.com/p/how-i-use-openclaw-after-one-month)
 
-[Antigravity 앱](https://antigravity.google/docs/getting-started)에서는 작업 폴더에 커스텀 에이전트를 띄우고, [SDK](https://antigravity.google/docs/sdk/overview)에서는 같은 역할 지시를 Python에서 읽고 실행합니다.
+이번 실습에서는 학교 계정으로 [Antigravity 앱](https://antigravity.google/docs/getting-started)을 열어 작업 폴더에서 비서의 역할과 도구를 정하고, 같은 역할 지시를 Python에서 읽어 [SDK](https://antigravity.google/docs/sdk/overview)로 호출합니다.
 
 ## 따라 하기
 
