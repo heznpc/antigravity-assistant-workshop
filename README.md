@@ -6,7 +6,7 @@
 
 ## 자료 받기
 
-- [발표 슬라이드 PDF 다운로드](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) — 공개 배포용 16장
+- [발표 슬라이드 PDF 다운로드](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) — 공개 배포용 19장
 - [전체 자료 ZIP 다운로드](https://github.com/heznpc/antigravity-assistant-workshop/archive/refs/heads/main.zip) — 슬라이드, 커스텀 에이전트, SDK 예제
 - [커스텀 에이전트 설정](.agents/agents/workshop-assistant.md) · [SDK 예제](examples/sdk_assistant.py)
 
@@ -14,14 +14,23 @@
 
 역할과 작업 규칙을 한 번 정해 두고, 같은 비서에게 그때그때 새 일을 맡깁니다. Antigravity 앱에서 작업 폴더와 에이전트를 열어 파일을 다루는 모습을 확인합니다. SDK에서는 같은 역할 지시를 읽어 Python 프로그램에서 비서를 호출합니다. 앱의 실행 권한과 대화 이력은 별도로 관리되며, SDK에서 세션을 이어 쓰려면 저장과 복원을 구성합니다. [커스텀 에이전트](https://antigravity.google/blog/introducing-custom-agents) · [SDK 빠른 시작](https://antigravity.google/docs/sdk/overview)
 
-### 유사 서비스 화면 둘러보기
+### 유사 서비스 소개
 
-| 서비스 | 발표에서 보는 실제 화면 | 실행 환경 |
+발표에서는 여섯 서비스의 공개 화면 캡처로 기능을 소개합니다. 실습은 Antigravity 앱과 SDK로 진행합니다.
+
+| 서비스 | 슬라이드에서 짚는 화면 | 실행 환경 |
 | --- | --- | --- |
 | [Dots](https://openai.com/index/introducing-dots/) | 왼쪽 ChatGPT 대화에서 일을 맡기고 수정 지시를 보내면, 오른쪽에서 슬라이드 결과를 확인합니다. | Dot 자체 클라우드 컴퓨터를 기본으로 쓰며, 필요할 때 사용자 컴퓨터를 연결할 수 있습니다. [공식 연결 안내](https://learn.chatgpt.com/docs/dots/computers-and-apps) |
 | [피클](https://apps.apple.com/kr/app/id6795790129) | ‘둘러보기’의 개인화된 제안을 본 뒤, 예약 채팅에서 ‘브라우저 열기’로 작업 화면을 확인합니다. | 웹 작업은 사용자별 원격 브라우저에서 실행합니다. [공식 실행 환경 설명](https://pickle.com/privacy/isolation) |
 | [Meta Muse](https://about.fb.com/ko/news/2026/09/introducing-muse-the-worlds-first-personal-ai-agent-built-for-everyone/amp/) | 대화에서 완성된 PDF를 받고, 구매 시에는 주문 정보와 허용·거부 버튼을 봅니다. [PDF 시연](https://about.fb.com/ko/wp-content/uploads/sites/16/2026/09/Muse_FieldTrip.mp4#t=14.2) · [구매 승인 시연](https://about.fb.com/ko/wp-content/uploads/sites/16/2026/09/Muse_Shopping.mp4#t=17.8) | 연결한 서비스와 Meta가 호스팅하는 실행 환경을 사용합니다. |
 | [OpenClaw](https://docs.openclaw.ai/) | 왼쪽 운영 메뉴에서 세션·자동화에 접근하고, 채팅 안에서 명령의 실행 상태와 경과 시간을 봅니다. [공식 저장소의 개발 검증 화면](https://github.com/openclaw/openclaw/blob/6d2cb0379cb66e9fc25584f978b71750e29b916a/.github/pr-proof/working-claw-centering/after-full.png) | 직접 운영하는 게이트웨이로 메신저와 에이전트를 연결합니다. |
+| [Grok Bot](https://x.ai/bot) | 예약 가능한 시간 후보를 받아보고, 반복 업무를 정해 둔 일정에 실행하는 루틴을 봅니다. [Grok Bot 앱스토어 화면](https://apps.apple.com/app/id6794501026) | 봇 전용 클라우드 컴퓨터에서 연결한 앱을 사용합니다. [공식 소개](https://x.ai/news/introducing-grok-bot) |
+| [Claude Duet](https://claude.com/product/claude-duet) | 먼저 보내는 알림, 주문 승인, 진행 중이거나 대기 중인 작업 목록을 봅니다. [Claude Duet 앱스토어 화면](https://apps.apple.com/us/app/claude-duet-by-anthropic/id6803276000) | 연결한 앱을 사용해 백그라운드에서도 작업합니다. [공식 소개](https://claude.com/resources/articles/claude-duet) |
+
+**공개된 실제 사용 사례**
+
+- Grok Bot을 만든 회사의 영업팀은 통화 기록을 CRM 메모에 반영하고 후속 연락 초안을 만드는 일을 맡겼습니다. 운영팀은 신규 입사자 자리 배정과 이메일로 받은 청구서 처리에 활용했습니다. [회사 내부 활용 사례](https://x.ai/news/introducing-grok-bot)
+- Anthropic의 보리스 체르니는 산책 중 Claude Duet에 머릿속 할 일을 말로 정리했습니다. 첼시 라르손은 자리를 비우기 전 할 일 목록을 맡기고 저녁에 결과 보고를 받았습니다. [Anthropic 구성원 활용 사례](https://claude.com/resources/articles/claude-duet)
 
 [Antigravity 앱](https://antigravity.google/docs/getting-started)에서는 작업 폴더에 커스텀 에이전트를 띄우고, [SDK](https://antigravity.google/docs/sdk/overview)에서는 같은 역할 지시를 Python에서 읽고 실행합니다.
 
