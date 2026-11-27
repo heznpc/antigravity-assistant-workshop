@@ -6,7 +6,7 @@
 
 ## 자료 받기
 
-- [발표 슬라이드 PDF 다운로드](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) — 공개 배포용 13장
+- [발표 슬라이드 PDF 다운로드](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) — 공개 배포용 16장
 - [전체 자료 ZIP 다운로드](https://github.com/heznpc/antigravity-assistant-workshop/archive/refs/heads/main.zip) — 슬라이드, 커스텀 에이전트, SDK 예제
 - [커스텀 에이전트 설정](.agents/agents/workshop-assistant.md) · [SDK 예제](examples/sdk_assistant.py)
 
@@ -14,15 +14,16 @@
 
 역할과 작업 규칙을 한 번 정해 두고, 같은 비서에게 그때그때 새 일을 맡깁니다. Antigravity 앱에서 작업 폴더와 에이전트를 열어 파일을 다루는 모습을 확인합니다. SDK에서는 같은 역할 지시를 읽어 Python 프로그램에서 비서를 호출합니다. 앱의 실행 권한과 대화 이력은 별도로 관리되며, SDK에서 세션을 이어 쓰려면 저장과 복원을 구성합니다. [커스텀 에이전트](https://antigravity.google/blog/introducing-custom-agents) · [SDK 빠른 시작](https://antigravity.google/docs/sdk/overview)
 
-### 유사 서비스와 실습 도구
+### 유사 서비스 화면 둘러보기
 
-| 서비스 | 비서와 작업하는 방식 |
-| --- | --- |
-| [Dots](https://openai.usethedots.com/) | 메시지와 통화로 일을 맡기고 컴퓨터 작업까지 이어 가는 개인 비서의 프리뷰를 공개했습니다. |
-| [Pickle](https://www.pickle.com/) | 개인 기억과 맥락을 바탕으로 비서에게 일을 맡기는 방식입니다. |
-| [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) | 연결한 서비스와 Meta가 호스팅하는 실행 환경에서 여러 단계의 일을 맡기는 방식입니다. |
-| [OpenClaw](https://docs.openclaw.ai/) | 직접 운영하는 게이트웨이로 메시지 채널과 에이전트를 연결합니다. |
-| [Antigravity 앱](https://antigravity.google/docs/getting-started)과 [SDK](https://antigravity.google/docs/sdk/overview) | 작업 폴더에서 커스텀 에이전트를 처음 실행해 보고, 같은 역할을 Python으로 불러 실행 흐름을 살펴볼 수 있습니다. |
+| 서비스 | 발표에서 보는 실제 화면 | 실행 환경 |
+| --- | --- | --- |
+| [Dots](https://openai.com/index/introducing-dots/) | 왼쪽 ChatGPT 대화에서 일을 맡기고 수정 지시를 보내면, 오른쪽에서 슬라이드 결과를 확인합니다. | Dot 자체 클라우드 컴퓨터를 기본으로 쓰며, 필요할 때 사용자 컴퓨터를 연결할 수 있습니다. [공식 연결 안내](https://learn.chatgpt.com/docs/dots/computers-and-apps) |
+| [피클](https://apps.apple.com/kr/app/id6795790129) | ‘둘러보기’의 개인화된 제안을 본 뒤, 예약 채팅에서 ‘브라우저 열기’로 작업 화면을 확인합니다. | 웹 작업은 사용자별 원격 브라우저에서 실행합니다. [공식 실행 환경 설명](https://pickle.com/privacy/isolation) |
+| [Meta Muse](https://about.fb.com/ko/news/2026/09/introducing-muse-the-worlds-first-personal-ai-agent-built-for-everyone/amp/) | 대화에서 완성된 PDF를 받고, 구매 시에는 주문 정보와 허용·거부 버튼을 봅니다. [PDF 시연](https://about.fb.com/ko/wp-content/uploads/sites/16/2026/09/Muse_FieldTrip.mp4#t=14.2) · [구매 승인 시연](https://about.fb.com/ko/wp-content/uploads/sites/16/2026/09/Muse_Shopping.mp4#t=17.8) | 연결한 서비스와 Meta가 호스팅하는 실행 환경을 사용합니다. |
+| [OpenClaw](https://docs.openclaw.ai/) | 왼쪽 운영 메뉴에서 세션·자동화에 접근하고, 채팅 안에서 명령의 실행 상태와 경과 시간을 봅니다. [공식 저장소의 개발 검증 화면](https://github.com/openclaw/openclaw/blob/6d2cb0379cb66e9fc25584f978b71750e29b916a/.github/pr-proof/working-claw-centering/after-full.png) | 직접 운영하는 게이트웨이로 메신저와 에이전트를 연결합니다. |
+
+[Antigravity 앱](https://antigravity.google/docs/getting-started)에서는 작업 폴더에 커스텀 에이전트를 띄우고, [SDK](https://antigravity.google/docs/sdk/overview)에서는 같은 역할 지시를 Python에서 읽고 실행합니다.
 
 ## 따라 하기
 
