@@ -12,12 +12,16 @@ ROLE_FILE = (
 )
 
 
-def create_assistant():
-    from google.antigravity import Agent, LocalAgentConfig
+def create_assistant(response_schema=None):
+    from google.antigravity import Agent, CapabilitiesConfig, LocalAgentConfig
 
     role_file = ROLE_FILE.read_text(encoding="utf-8")
     instructions = role_file.split("---", maxsplit=2)[2].strip()
-    return Agent(LocalAgentConfig(system_instructions=instructions))
+    return Agent(LocalAgentConfig(
+        system_instructions=instructions,
+        response_schema=response_schema,
+        capabilities=CapabilitiesConfig(enabled_tools=[], enable_subagents=False),
+    ))
 
 
 async def run(prompts: list[str]) -> None:

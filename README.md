@@ -1,4 +1,4 @@
-# Antigravity로 나만의 AI 비서 만들기
+# Antigravity로 내 일정을 챙기는 AI 비서 만들기
 
 고려사이버대학교 소프트웨어학부 세미나 실습 자료
 
@@ -6,13 +6,12 @@
 
 ## 자료 받기
 
-- [발표 슬라이드 PDF 다운로드](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) — 공개 배포용 19장
-- [전체 자료 ZIP 다운로드](https://github.com/heznpc/antigravity-assistant-workshop/archive/refs/heads/main.zip) — 슬라이드, 커스텀 에이전트, SDK 예제
-- [커스텀 에이전트 설정](.agents/agents/workshop-assistant.md) · [SDK 예제](examples/sdk_assistant.py)
+- [발표 슬라이드 PDF](https://raw.githubusercontent.com/heznpc/antigravity-assistant-workshop/main/antigravity-assistant-workshop.pdf) · [전체 자료 ZIP](https://github.com/heznpc/antigravity-assistant-workshop/archive/refs/heads/main.zip)
+- [앱에서 여는 비서 설정](.agents/agents/workshop-assistant.md) · [SDK 일정 해석](examples/calendar_assistant.py) · [캘린더 웹앱](examples/web_assistant.py)
 
 ## 실습에서 만드는 비서
 
-역할과 작업 규칙을 한 번 정해 두고, 같은 비서에게 그때그때 새 일을 맡깁니다. Antigravity 앱에서 작업 폴더와 에이전트를 열어 파일을 다루는 모습을 확인합니다. SDK에서는 같은 역할 지시를 읽어 Python 프로그램에서 비서를 호출합니다. 앱의 실행 권한과 대화 이력은 별도로 관리되며, SDK에서 세션을 이어 쓰려면 저장과 복원을 구성합니다. [커스텀 에이전트](https://antigravity.google/blog/introducing-custom-agents) · [SDK 빠른 시작](https://antigravity.google/docs/sdk/overview)
+브라우저에서 “다음 주 수요일 저녁 7시에 스터디 한 시간 넣어 줘”라고 요청하면 일정이 주간 캘린더에 저장됩니다. Antigravity 앱에서는 커스텀 에이전트의 역할을 확인합니다. 브라우저에서 보낸 요청은 Python 웹앱이 같은 역할 지시와 함께 SDK에 전달합니다. SDK가 해석한 제목, 시작 시각, 소요 시간을 웹앱에서 확인하고 저장합니다. [커스텀 에이전트](https://antigravity.google/blog/introducing-custom-agents) · [SDK 구조화 응답](https://antigravity.google/docs/sdk/structured-output/)
 
 ### 유사 서비스 소개
 
@@ -34,38 +33,49 @@
 - **영상 수정 · 라일리 브라운** — 휴대폰의 Claude Duet으로 첫 장면과 재생 속도를 바꿔 달라고 요청했습니다. 맥에서 실행 중인 Claude Code가 수정본을 만들었습니다. [직접 시연](https://www.youtube.com/watch?v=zU0jqYKTgMs&t=227s)
 - **글감 정리 · 블라드 시필로프** — OpenClaw가 전달받은 기사와 링크를 모아 글감 목록에 추가했습니다. 최종 원고는 본인이 썼습니다. [본인의 사용 기록](https://founderbrain.substack.com/p/how-i-use-openclaw-after-one-month)
 
-Antigravity를 고른 첫 번째 이유는 학교 계정으로 학생 신분을 확인해 무료로 시작할 수 있기 때문입니다. [Antigravity 앱](https://antigravity.google/docs/getting-started)에서 작업 폴더를 열어 비서의 역할과 도구를 정합니다. 같은 역할 지시를 [SDK 터미널 예제](examples/sdk_assistant.py)와 [로컬 웹 예제](examples/web_assistant.py)에서 읽어 비서를 호출합니다.
+## 세미나 실습
 
-## 따라 하기
+### 1. 저장소를 클론하고 앱에서 열기
 
-1. [Google 학생 혜택 신청 페이지](https://one.google.com/ai-student)에서 개인 Google 계정으로 로그인합니다. Google AI Plus 학생 혜택을 선택하고 SheerID로 학생 신분을 확인합니다. 신청 화면에 표시되는 기간과 이후 가격을 확인합니다. [Google One 공식 신청 안내](https://support.google.com/googleone/answer/17422238?hl=ko)
-2. [Antigravity 다운로드](https://antigravity.google/download)에서 운영체제에 맞는 **Antigravity App**을 설치합니다. 같은 Google 계정으로 로그인한 뒤 내려받은 자료 폴더를 작업공간으로 엽니다.
-3. 앱의 에이전트 목록에서 `workshop-assistant`를 선택합니다. [커스텀 에이전트 설정 파일](.agents/agents/workshop-assistant.md)의 Markdown 본문이 역할 지시이고, YAML의 `tools`가 이 예제에서 지정한 도구입니다.
-4. SDK 실습은 Python 가상환경에서 시작합니다. [Gemini API 키 발급 안내](https://ai.google.dev/gemini-api/docs/api-key)와 [Gemini API 제한](https://ai.google.dev/gemini-api/docs/rate-limits)은 앱 구독과 별도로 확인합니다.
+Git과 Python 3.11 이상을 준비합니다. 학교 계정으로 학생 신분을 확인해 무료로 시작할 수 있다는 점이 이 실습에서 Antigravity를 고른 첫 번째 이유입니다. [Google One 학생 혜택 안내](https://support.google.com/googleone/answer/17422238?hl=ko) · [Antigravity 다운로드](https://antigravity.google/download)
+
+```sh
+git clone https://github.com/heznpc/antigravity-assistant-workshop.git
+cd antigravity-assistant-workshop
+```
+
+Antigravity 앱에서 클론한 폴더를 작업공간으로 열고 에이전트 목록에서 `workshop-assistant`를 선택합니다. [역할 파일](.agents/agents/workshop-assistant.md)에서 앱과 SDK가 읽는 역할 지시를 확인합니다.
+
+### 2. 브라우저에서 일정 맡기기
+
+예시 모드는 Python만 있으면 됩니다. 터미널에서 실행한 뒤 [내 캘린더](http://127.0.0.1:8000)를 열고 **비서에게 요청**을 누릅니다.
+
+```sh
+python3 examples/web_assistant.py --demo
+```
+
+Windows에서는 `py examples/web_assistant.py --demo`를 실행합니다. 기본 요청을 보내면 다음 주 수요일 19:00–20:00에 스터디가 추가됩니다. 두 번째로 “다음 주 금요일 오후 3시에 과제 회의 30분 넣어 줘.”를 보내고 같은 캘린더에 저장되는지 확인합니다. 예시 모드에서는 날짜, 시작 시간, 제목, 소요 시간을 예시 순서대로 입력합니다.
+
+### 3. SDK로 일정 해석하기
+
+터미널에서 `Ctrl+C`를 눌러 예시 모드를 종료합니다. SDK를 설치하고 발급받은 Gemini API 키를 환경 변수에 설정한 뒤 다시 실행합니다. SDK 키 발급과 호출 한도는 앱의 학생 혜택과 별도로 확인합니다. [Gemini API 키 안내](https://ai.google.dev/gemini-api/docs/api-key) · [호출 한도](https://ai.google.dev/gemini-api/docs/rate-limits)
 
 ```sh
 python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install google-antigravity
+.venv/bin/python -m pip install -r requirements.txt
 export GEMINI_API_KEY='발급받은-키'
-python examples/sdk_assistant.py "README를 읽고 실습 준비물 세 가지를 뽑아 줘."
+.venv/bin/python examples/web_assistant.py
 ```
 
-Windows PowerShell에서는 `python -m venv .venv` 다음에 `.\.venv\Scripts\Activate.ps1`로 가상환경을 활성화하고, `$env:GEMINI_API_KEY = '발급받은-키'`로 설정합니다. 키는 로컬 환경 변수에만 둡니다.
+Windows PowerShell에서는 `py -m venv .venv`로 가상환경을 만든 뒤 `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`, `$env:GEMINI_API_KEY = '발급받은-키'`, `.\.venv\Scripts\python.exe examples/web_assistant.py`를 순서대로 실행합니다.
 
-같은 실행에서 이어서 요청하려면 명령 끝에 새 요청을 따옴표로 하나 더 붙입니다. 예를 들어 첫 요청으로 준비물을 뽑고, 두 번째 요청으로 실습이 끝난 뒤 확인할 체크리스트를 받을 수 있습니다.
+### 발표에서 볼 코드
 
-## 브라우저에서 실습 준비 비서 쓰기
+1. [역할 파일](.agents/agents/workshop-assistant.md)에 어떤 정보를 일정으로 해석할지 적습니다.
+2. [일정 해석 코드](examples/calendar_assistant.py)에서 SDK가 구조화한 제목, 날짜, 시각, 소요 시간을 검증합니다.
+3. [웹앱](examples/web_assistant.py)이 일정을 로컬 SQLite에 저장하고 해당 주를 화면에 엽니다.
 
-위의 Python 환경과 Gemini API 키 설정을 마친 터미널에서 웹 예제를 실행합니다.
-
-```sh
-python examples/web_assistant.py
-```
-
-같은 컴퓨터의 브라우저에서 [실습 준비 비서](http://127.0.0.1:8000)를 열고 **비서에게 요청**을 누릅니다. 기본 요청은 “README를 읽고 실습 준비물 3가지를 체크리스트로 만들어 줘.”입니다. Python이 현재 README와 요청을 SDK에 전달하고, 답을 브라우저에 표시합니다.
-
-슬라이드의 결과 화면에는 예시 응답을 사용했습니다. 실제 답변의 문구는 호출할 때마다 달라질 수 있습니다. [Lucide 아이콘](https://lucide.dev/) · [아이콘 라이선스](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
+예시 모드와 SDK 모드의 일정은 각각 `.workshop/demo.sqlite3`, `.workshop/calendar.sqlite3`에 저장됩니다. 캘린더 시간대는 한국 표준시이며 슬라이드 캡처는 예시 모드입니다. [Lucide 아이콘과 라이선스](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
 
 ## 슬라이드 화면 출처
 
